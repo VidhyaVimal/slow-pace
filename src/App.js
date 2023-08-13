@@ -13,8 +13,11 @@ const App = () => {
         const response = await fetch(`${API_URL}&s=${title}`);
         const data = await response.json();
         console.log(data.Search);
-        setMovies(data.Search);
-        setsearchTerm(title);
+        if (data.Search !== undefined) {
+            setMovies(data.Search);
+            setsearchTerm(title);
+        } else
+            alert(data.Error) 
     }
     useEffect(() => {
         searchMovies('Zootopia');
